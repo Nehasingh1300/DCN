@@ -1,0 +1,143 @@
+19.6 PRACTICE SET
+Review Questions
+1. What is the number of bits in an IPv4 address? What is the number of bits in an
+IPv6 address?
+IPv4 32
+IPv6 128
+
+2. What is dotted decimal notation in IPv4 addressing? What is the number of bytes
+in an IPv4 address represented in dotted decimal notation? What is hexadecimal
+notation in IPv6 addressing? What is the number of digits in an IPv6 address represented in hexadecimal notation?
+3. What are the differences between classful addressing and classless addressing in IPv4?
+4. List the classes in classful addressing and define the application of each class (unicast,
+multicast, broadcast, or reserve).
+5. Explain why most of the addresses in class A are wasted. Explain why a medium-size
+or large-size corporation does not want a block of class C addresses.
+6. What is a mask in IPv4 addressing? What is a default mask in IPv4 addressing?
+7. What is the network address in a block of addresses? How can we find the network
+address if one of the addresses in a block is given?
+8. Briefly define subnetting and supemetting. How do the subnet mask and supemet
+mask differ from a default mask in classful addressing?
+9. How can we distinguish a multicast address in IPv4 addressing? How can we do so
+in IPv6 addressing?
+10. What is NAT? How can NAT help in address depletion?
+Exercises
+II. What is the address space in each of the following systems?
+a. A system with 8-bit addresses
+b. A system with 16-bit addresses
+c. A system with 64-bit addresses
+SECTION 19.6 PRACTICE SET 575
+12. An address space has a total of 1024 addresses. How many bits are needed to represent an address?
+13. An address space uses the three symbols 0, 1, and 2 to represent addresses.
+If each address is made of 10 symbols, how many addresses are available in this
+system?
+14. Change the following IP addresses from dotted-decimal notation to binary notation.
+a. 114.34.2.8
+b. 129.14.6.8
+c. 208.34.54.12
+d. 238.34.2.1
+15. Change the following IP addresses from binary notation to dotted-decimal notation.
+a. 01111111 11110000 01100111 01111101
+b. 10101111 11000000 11111000 00011101
+c. 11011111 10110000 00011111 01011101
+d. 11101111 11110111 11000111 00011101
+16. Find the class of the following IP addresses.
+a. 208.34.54.12
+b. 238.34.2.1
+c. 114.34.2.8
+d. 129.14.6.8
+17. Find the class of the following IP addresses.
+a. 11110111 11110011 10000111 11011101
+b. 10101111 11000000 11110000 00011101
+c. 11011111 10110000 00011111 01011101
+d. 11101111 11110111 11000111 00011101
+18. Find the netid and the hostid of the following IP addresses.
+• a. 114.34.2.8
+b. 132.56.8.6
+c. 208.34.54.12
+19. In a block of addresses, we know the IP address of one host is 25.34.12.56/16.
+What are the first address (network address) and the last address (limited broadcast
+address) in this block?
+20. In a block of addresses, we know the IP address of one host is 182.44.82.16/26.
+What are the first address (network address) and the last address in this block?
+21. An organization is granted the block 16.0.0.0/8. The administrator wants to create
+500 fixed-length subnets.
+a. Find the subnet mask.
+b. Find the number of addresses in each subnet.
+c. Find the first and last addresses in subnet 1.
+d. Find the first and last addresses in subnet 500.
+576 CHAPTER 19 NETWORK LAYER: LOGICAL ADDRESSING
+22. An organization is granted the block 130.56.0.0/16. The administrator wants to
+create 1024 subnets.
+a. Find the subnet mask.
+b. Find the number of addresses in each subnet.
+c. Find the first and last addresses in subnet 1.
+d. Find the first and last addresses in subnet 1024.
+23. An organization is granted the block 211.17.180.0/24. The administrator wants to
+create 32 subnets.
+a. Find the subnet mask.
+b. Find the number of addresses in each subnet.
+c. Find the first and last addresses in subnet 1.
+d. Find the first and last addresses in subnet 32.
+24. Write the following masks in slash notation (In).
+a. 255.255.255.0
+b. 255.0.0.0
+c. 255.255.224.0
+d. 255.255.240.0
+25. Find the range of addresses in the following blocks.
+a. 123.56.77.32/29
+b. 200.17.21.128/27
+c. 17.34.16.0/23
+d. 180.34.64.64/30
+26. An ISP is granted a block of addresses starting with 150.80.0.0/16. The ISP wants
+to distribute these blocks to 2600 customers as follows.
+a. The first group has 200 medium-size businesses; each needs 128 addresses.
+b. The second group has 400 small businesses; each needs 16 addresses.
+c. The third group has 2000 households; each needs 4 addresses.
+Design the subblocks and give the slash notation for each subblock. Find out how
+many addresses are still available after these allocations.
+27. An ISP is granted a block of addresses starting with 120.60.4.0/22. The ISP
+wants to distribute these blocks to 100 organizations with each organization
+receiving just eight addresses. Design the subblocks and give the slash notation
+for each subblock. Find out how many addresses are still available after these
+allocations.
+28. An ISP has a block of 1024 addresses. It needs to divide the addresses among
+1024 customers. Does it need subnetting? Explain your answer.
+29. Show the shortest form of the following addresses.
+a. 2340: lABC: 119A:AOOO:0000:0000:0000:0000
+b. OOOO:OOAA:OOOO:OOOO:OOOO:OOOO: 119A:A231
+c. 2340:0000:0000:0000:0000: 119A:AOO1:0000
+d. 0000:0000:0000:2340:0000:0000:0000:0000
+SECTION 19.6 PRACTICE SET 577
+30. Show the original (unabbreviated) form of the following addresses.
+a. 0::0
+b.O:AA::O
+c. 0: 1234::3
+d. 123::1:2
+31. What is the type of each of the following addresses?
+a. FE80::12
+b. FECO: :24A2
+c. FF02::0
+d. 0::01
+32. What is the type of each of the following addresses?
+a. 0::0
+b. 0: :FFFF:O:O
+c. 582F:1234::2222
+d. 4821::14:22
+e. 54EF::A234:2
+33. Show the provider prefix (in hexadecimal colon notation) of an address assigned
+to a subscriber if it is registered in the United States with ABC1 as the provider
+identification.
+34. Show in hexadecimal colon notation the IPv6 address
+a. Compatible to the IPv4 address 129.6.12.34
+b. Mapped to the IPv4 address 129.6.12.34
+35. Show in hexadecimal colon notation
+a. The link local address in which the node identifier is 0:: 123/48
+b. The site local address in which the node identifier is 0:: 123/48
+36. Show in hexadecimal colon notation the permanent multicast address used in a link
+local scope.
+37.• A host has the address 581E: 1456:2314:ABCD:: 1211. If the node identification is
+48 bits, find the address of the subnet to which the host is attached.
+38. A site with 200 subnets has the class B address of 132.45.0.0. The site recently
+migrated to IPv6 with the subscriber prefix 581E:1456:2314::ABCD/80. Design
+the subnets and define the subnet addresses, using a subnet identifier of 32 bits.
