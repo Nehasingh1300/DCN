@@ -19,21 +19,112 @@ FDEC 0074 0000 0000 0000 BOFE 0000 FFFF (2BYTES EACH)
 
 3. What are the differences between classful addressing and classless addressing in IPv4?
 
-
+Classful                                            Classless
+It has classes like A,B,C,D and E                   It does not classes
+Almost obsolete                                     Not obsolete
+Large part of available add is wasted               Add are not wasted
+IP are divided inform of classes                    IP are divided in form of blocks and subnetting
 
 
 4. List the classes in classful addressing and define the application of each class (unicast,
 multicast, broadcast, or reserve).
+
+Unicast Addresses
+A unicast address defines a single computer. The packet sent to a unicast address must
+be delivered to that specific computer. IPv6 defines two types of unicast addresses: geographically based and provider-based. 
+
+Multicast Addresses
+Multicast addresses are used to define a group of hosts instead ofjust one. A packet sent
+to a multicast address must be delivered to each member of the group.
+
+Broadcast
+An address that enables transmission to every node in a local network. The address is the highest numeric value of the address format
+being used. An Ethernet broadcast address is all binary 1's. An IP broadcast address is the highest number in its class; for example, 
+the broadcast address of a Class C 192.168.
+
+Reserved Addresses
+Another category in the address space is the reserved address. These addresses start
+with eight Os (type prefix is 00000000)
+
+
+
 5. Explain why most of the addresses in class A are wasted. Explain why a medium-size
 or large-size corporation does not want a block of class C addresses.
+
+A block in class A address is too large for almost any organization. This means most of the 
+addresses in class A were wasted and were not used. A block in class C is probably too small for
+many organizations.
+
+
 6. What is a mask in IPv4 addressing? What is a default mask in IPv4 addressing?
+
+32-bit number made of contiguous 1's follwed by contigous 0's. The mask can help us to find the netid and the hostid. Default mask 255.0.0.0.
+
+
 7. What is the network address in a block of addresses? How can we find the network
 address if one of the addresses in a block is given?
+
+The first address is called the
+network address and defines the organization network.
+The first address in a block is normally not assigned to any device; it is used as the
+network address that represents the organization to the rest of the world.
+Eg; if any random add is 205.16.37.34/28
+then formula for first add = add with replacing log(2^(32-28))=4 with 9;s from right
+34 in binary is 000100010 will be 00010000 
+So, first add / network add = 205.16.37.32
+
+
 8. Briefly define subnetting and supemetting. How do the subnet mask and supemet
 mask differ from a default mask in classful addressing?
+
+If an organization was
+granted a large block in class A or B, it could divide the addresses into several contiguous
+groups and assign each group to smaller networks (called subnets) or, in rare cases,
+share part of the addresses with neighbors.
+
+The size of a class C block with a
+maximum number of 256 addresses did not satisfy the needs of most organizations.
+Even a midsize organization needed more addresses. One solution was supernetting.
+In supernetting, an organization can combine several class C blocks to create a larger
+range of addresses. In other words, several networks are combined to create a supernetwork or a supemet. An organization can apply for a set of class C blocks instead of
+just one. For example, an organization that needs 1000 addresses can be granted four
+contiguous class C blocks. The organization can then use these addresses to create one
+supernetwork. Supernetting decreases the number of Is in the mask. For example, if an
+organization is given four class C addresses, the mask changes from /24 to /22.
+
+
 9. How can we distinguish a multicast address in IPv4 addressing? How can we do so
 in IPv6 addressing?
+
+Multicast Addresses
+IPv4
+"Multicast addresses in IPv4 are those that start with the 1110 pattern. Multicast addresses in IPv6 are those that start with the 11111111 pattern."
+
+IPv6
+Multicast addresses are used to define a group of hosts instead ofjust one. A packet sent
+to a multicast address must be delivered to each member of the group. Figure 19.17
+shows the format of a multicast address.
+The second field is a flag that defines the group address as either permanent or
+transient. A permanent group address is defined by the Internet authorities and can be
+accessed at all times. A transient group address, on the other hand, is used only temporarily. Systems engaged in a teleconference, for example, can use a transient group
+address. The third field defines the scope of the group address. Many different scopes
+have been defined
+
+
 10. What is NAT? How can NAT help in address depletion?
+
+NAT enables a user to have a large set of addresses internally and one address, or a small
+set of addresses, externally. The traffic inside can use the large set; the traffic outside, the
+small set.
+Using Both IP Addresses and Port Numbers To allow a many-to-many relationship
+between private-network hosts and external server programs, we need more information
+in the translation table. For example, suppose two hosts with addresses 172.18.3.1 and
+172.18.3.2 inside a private network need to access the HTTP server on external host
+566 CHAPTER 19 NETWORK LAYER: LOGICAL ADDRESSING
+25.8.3.2. Ifthe translation table has five columns, instead of two, that include the source
+and destination port numbers ofthe transport layer protocol, the ambiguity is eliminated.
+
+
 Exercises
 II. What is the address space in each of the following systems?
 a. A system with 8-bit addresses
