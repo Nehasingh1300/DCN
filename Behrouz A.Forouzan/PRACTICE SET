@@ -2,13 +2,26 @@
 Review Questions
 1. What is the number of bits in an IPv4 address? What is the number of bits in an
 IPv6 address?
+
 IPv4 32
 IPv6 128
+
 
 2. What is dotted decimal notation in IPv4 addressing? What is the number of bytes
 in an IPv4 address represented in dotted decimal notation? What is hexadecimal
 notation in IPv6 addressing? What is the number of digits in an IPv6 address represented in hexadecimal notation?
+
+IPv4 : 4bytes 8bits each eg; 117.149.29.2
+
+IPv6 : 16bytes 128bits 
+FDEC 0074 0000 0000 0000 BOFE 0000 FFFF (2BYTES EACH)
+
+
 3. What are the differences between classful addressing and classless addressing in IPv4?
+
+
+
+
 4. List the classes in classful addressing and define the application of each class (unicast,
 multicast, broadcast, or reserve).
 5. Explain why most of the addresses in class A are wasted. Explain why a medium-size
