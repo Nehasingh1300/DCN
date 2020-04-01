@@ -1,6 +1,179 @@
 # Chapter 19
-<code>
+
 IPv4 addresses are unique. They are unique in the sense that each address defines
 one, and only one, connection to the Internet. Two devices on the Internet can never
 have the same address at the same time.
-</code>
+
+if a device operating at the network layer has m connections to
+the Internet, it needs to have m addresses. We will see later that a router is such a
+device.
+
+Address Space
+An address space is the total number of addresses used by the protocol. If a protocol uses N bits to define
+an address, the address space is 2N because each bit can have two different values (0 or 1)
+and N bits can have 2N values.
+
+Classful Addressing
+In classful addressing, the address space is divided into five classes: A, B, C, D,
+and E. Each class occupies some part of the address space.
+
+Netid and Hostid
+In classful addressing, an IP address in class A, B, or C is divided into netid and hostid.
+The netid is in color, the hostid is in white.
+                Netid           Hostid    
+Class A         1               3
+Class B         2               2
+Class C         3               1
+
+
+Mask
+We can also use a mask (also called the default mask), a 32-bit number made of
+contiguous. The masks for classes A, B, and C are shown
+in Table 19.2. The concept does not apply to classes D and E.
+Table 19.2 Default masksfor classful addressing
+Class Binary Dotted-Decimal CIDR
+
+A 11111111 00000000 00000000 00000000 255.0.0.0 18
+B 11111111 11111111 00000000 00000000 255.255.0.0 116
+C 11111111 11111111 11111111 00000000 255.255.255.0 124
+
+The mask can help us to find the netid and the hostid. For example, the mask for a
+class A address has eight 1s, which means the first 8 bits of any address in class A
+define the netid; the next 24 bits define the hostid.
+This notation is also called slash notation or Classless
+Interdomain Routing (CIDR) notation.
+
+
+Subnetting
+If an organization was granted a large block in class A or B, it could divide the addresses into several contiguous
+groups and assign each group to smaller networks (called subnets) or, in rare cases,
+share part of the addresses with neighbors.
+
+
+Supernetting
+Several networks are combined to create a supernetwork or a supemet. An organization can apply for a set of class C blocks instead of
+just one. For example, an organization that needs 1000 addresses can be granted four
+contiguous class C blocks. The organization can then use these addresses to create one
+supernetwork. Supernetting decreases the number of Is in the mask. For example, if an
+organization is given four class C addresses, the mask changes from /24 to /22.
+
+**Classful addressing, which is almost obsolete, is replaced with classless addressing.**
+
+
+Classless Addressing
+To overcome address depletion and give more organizations access to the Internet,
+classless addressing was designed and implemented.
+
+Address Blocks
+In classless addressing, when an entity, small or large, needs to be connected to the
+Internet, it is granted a block (range) of addresses.
+
+Restriction To simplify the handling of addresses, the Internet authorities impose
+three restrictions on classless address blocks:
+1. The addresses in a block must be contiguous, one after another.
+2. The number of addresses in a block must be a power of 2 (I, 2, 4, 8, ... ).
+3. The first address must be evenly divisible by the number of addresses.
+
+Mask
+A better way to define a block of addresses is to select any address in the block and the
+mask. As we discussed before, a mask is a 32-bit number in which the n leftmost bits
+are Is and the 32 - n rightmost bits are Os.
+
+First Address The first address in the block can be found by setting the 32 - n rightmost bits in the binary notation of the address to Os.
+Last Address The last address in the block can be found by setting the 32 - n rightmost bits in the binary notation of the address to Is.
+Number of Addresses The number of addresses in the block is the difference between the last and first address. It can easily be found using the formula 2^(32- n).
+
+
+Network Addresses
+The first address in the class, however, is normally (not always) treated as a special address. The first address is called the
+network address and defines the organization network. It defines the organization itself to the rest of the world
+
+The first address in a block is normally not assigned to any device; it is used as the
+network address that represents the organization to the rest of the world.
+
+Hierarchy
+IP addresses, like other addresses or identifiers we encounter these days, have levels of
+hierarchy. For example, a telephone network in North America has three levels of hierarchy. The leftmost three digits define the area code, the next three digits define the
+exchange, the last four digits define the connection of the local loop to the central
+office.
+
+Two level Hierarchy
+Each address in the block can be considered as a two-level hierarchical structure:
+the leftmost n bits (prefix) define the network;
+the rightmost 32 - n bits define the host.
+
+Three-Levels ofHierarchy: Subnetting
+An organization that is granted a large block of addresses may want to create clusters of
+networks (called subnets) and divide the addresses between the different subnets. The
+organization, however, needs to create small subblocks of addresses, each assigned to
+specific subnets. The organization has its own mask; each subnet must also have its own
+
+As an example, suppose an organization is given the block 17.12.40.0/26, which
+contains 64 addresses. The organization has three offices and needs to divide the
+addresses into three subblocks of 32, 16, and 16 addresses. We can find the new masks
+by using the following arguments:
+1. Suppose the mask for the first subnet is n1, then 232- n1 must be 32, which means
+that n1 =27.
+2. Suppose the mask for the second subnet is n2, then 232- n2 must be 16, which
+means that n2 = 28.
+3. Suppose the mask for the third subnet is n3, then 232- n3 must be 16, which means
+that n3 =28.
+This means that we have the masks 27, 28, 28 with the organization mask being 26.
+
+
+Address Allocation
+The ultimate responsibility of address allocation is given to a global authority called the
+Internet Corporation for Assigned Names and Addresses (ICANN). However, ICANN
+does not normally allocate addresses to individual organizations. An ISP receives one large block
+to be distributed to its Internet users. This is called address aggregation: many blocks of
+addresses are aggregated in one block and granted to one ISP.
+
+
+Network Address Translation (NAT)
+NAT enables a user to have a large set of addresses internally and one address, or a small
+set of addresses, externally. The traffic inside can use the large set; the traffic outside, the
+small set.
+
+Address Translation
+All the outgoing packets go through the NAT router, which replaces the source address
+in the packet with the global NAT address. All incoming packets also pass through the
+NAT router, which replaces the destination address in the packet (the NAT router global
+address) with the appropriate private address.
+
+NAT and ISP
+An ISP that serves dial-up customers can use NAT technology to conserve addresses.
+For example, suppose an ISP is granted 1000 addresses, but has 100,000 customers.
+Each of the customers is assigned a private network address. The ISP translates each of
+the 100,000 source addresses in outgoing packets to one of the 1000 global addresses;
+it translates the global destination address in incoming packets to the corresponding
+private address
+
+IPv6
+An IPv6 address is 128 bits long.
+
+Unicast Addresses
+A unicast address defines a single computer. The packet sent to a unicast address must
+be delivered to that specific computer. IPv6 defines two types of unicast addresses: geographically based and provider-based. W
+
+Multicast Addresses
+Multicast addresses are used to define a group of hosts instead ofjust one. A packet sent
+to a multicast address must be delivered to each member of the group.
+
+Allycast Addresses
+IPv6 also defines anycast addresses. An anycast address, like a multicast address, also
+defines a group of nodes. However, a packet destined for an anycast address is delivered
+to only one ofthe members ofthe anycast group, the nearest one (the one with the shortest
+route).
+
+Reserved Addresses
+Another category in the address space is the reserved address. These addresses start
+with eight Os (type prefix is 00000000)
+
+Local . Addresses
+These addresses are used when an organization wants to use IPv6 protocol without being
+connected to the global Internet. In other words, they provide addressing for private networks. Nobody outside the organization can send a message to the nodes using these
+addresses. 
+
+
+
+
