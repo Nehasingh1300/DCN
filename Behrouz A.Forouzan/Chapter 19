@@ -1,0 +1,6 @@
+# Chapter 19
+<code>
+IPv4 addresses are unique. They are unique in the sense that each address defines
+one, and only one, connection to the Internet. Two devices on the Internet can never
+have the same address at the same time.
+</code>
