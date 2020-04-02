@@ -224,11 +224,13 @@ First Add = 182.44.82.63
 
 21. An organization is granted the block 16.0.0.0/8. The administrator wants to create
 500 fixed-length subnets.
+
 a. Find the subnet mask.
 b. Find the number of addresses in each subnet.
 c. Find the first and last addresses in subnet 1.
 d. Find the first and last addresses in subnet 500.
-576 CHAPTER 19 NETWORK LAYER: LOGICAL ADDRESSING
+
+
 22. An organization is granted the block 130.56.0.0/16. The administrator wants to
 create 1024 subnets.
 a. Find the subnet mask.
