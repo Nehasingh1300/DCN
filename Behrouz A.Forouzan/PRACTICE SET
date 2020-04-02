@@ -127,43 +127,101 @@ and destination port numbers ofthe transport layer protocol, the ambiguity is el
 
 Exercises
 II. What is the address space in each of the following systems?
-a. A system with 8-bit addresses
-b. A system with 16-bit addresses
-c. A system with 64-bit addresses
-SECTION 19.6 PRACTICE SET 575
+
+a. A system with 8-bit addresses : 2^8
+b. A system with 16-bit addresses : 2^16
+c. A system with 64-bit addresses : 2^64
+
+
 12. An address space has a total of 1024 addresses. How many bits are needed to represent an address?
+
+IPv4 requires 32 bits
+for 1024 32x1024 = 32768 bits
+
+IPv6 requires 128 bits
+for 1024 128x1024 = 131072 bits
+
+
 13. An address space uses the three symbols 0, 1, and 2 to represent addresses.
 If each address is made of 10 symbols, how many addresses are available in this
 system?
+
+As there are three variables and 10 bits so address space will be 3^10 = 59049 addresses.
+
+
 14. Change the following IP addresses from dotted-decimal notation to binary notation.
-a. 114.34.2.8
-b. 129.14.6.8
-c. 208.34.54.12
-d. 238.34.2.1
+
+a. 114.34.2. : 01110010 00100010 00000010 00001000
+b. 129.14.6.8 : 10000001 00001110 00000110 00001000
+c. 208.34.54.12 : 01101000 00100010 00110110 00001100
+d. 238.34.2.1 : 11101110 00100010 00000010 00000001
+
+
 15. Change the following IP addresses from binary notation to dotted-decimal notation.
-a. 01111111 11110000 01100111 01111101
-b. 10101111 11000000 11111000 00011101
-c. 11011111 10110000 00011111 01011101
-d. 11101111 11110111 11000111 00011101
+
+a. 01111111 11110000 01100111 01111101 : 127.240.103.125
+b. 10101111 11000000 11111000 00011101 : 175.192.248.29
+c. 11011111 10110000 00011111 01011101 : 223.176.31.93
+d. 11101111 11110111 11000111 00011101 : 239.247.199.29
+
+
 16. Find the class of the following IP addresses.
-a. 208.34.54.12
-b. 238.34.2.1
-c. 114.34.2.8
-d. 129.14.6.8
+
+a. 208.34.54.12 : C
+b. 238.34.2.1 : D 
+c. 114.34.2.8 : A
+d. 129.14.6.8 : B
+
+
 17. Find the class of the following IP addresses.
-a. 11110111 11110011 10000111 11011101
-b. 10101111 11000000 11110000 00011101
-c. 11011111 10110000 00011111 01011101
-d. 11101111 11110111 11000111 00011101
+
+a. 11110111 11110011 10000111 11011101 : E
+b. 10101111 11000000 11110000 00011101 : B 
+c. 11011111 10110000 00011111 01011101 : C
+d. 11101111 11110111 11000111 00011101 : D
+
+
 18. Find the netid and the hostid of the following IP addresses.
-• a. 114.34.2.8
-b. 132.56.8.6
-c. 208.34.54.12
+
+a. 114.34.2.8 : class A
+netid : 114
+hostid : 34.2.8
+
+b. 132.56.8.6 : class B
+netid : 132.56
+hostid : 8.6
+
+c. 208.34.54.12 : class C
+netid : 208.34.54
+hostid : 12
+
+
 19. In a block of addresses, we know the IP address of one host is 25.34.12.56/16.
 What are the first address (network address) and the last address (limited broadcast
 address) in this block?
+
+add = 2^(32-16) = 2^16
+convert last 16bits to 0 for first add
+First Add = 25.34.0.0
+
+add = 2^(32-16) = 2^16
+convert last 16bits to 1 for first add
+First Add = 25.34.255.255
+
+
+
 20. In a block of addresses, we know the IP address of one host is 182.44.82.16/26.
 What are the first address (network address) and the last address in this block?
+
+add = 2^(32-26) = 2^6
+convert last 6bits to 0 for first add
+First Add = 182.44.82.0
+
+add = 2^(32-26) = 2^6
+convert last 6bits to 1 for first add
+First Add = 182.44.82.63
+
+
 21. An organization is granted the block 16.0.0.0/8. The administrator wants to create
 500 fixed-length subnets.
 a. Find the subnet mask.
