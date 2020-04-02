@@ -231,28 +231,66 @@ c. Find the first and last addresses in subnet 1.
 d. Find the first and last addresses in subnet 500.
 
 
+                                                  An organization is granted the block 16.0.0.0/8. The administrator wants to create 500 fixed- length subnets
+
+                                                  subnet mask -> 255.255.128.0
+                                                  The number of addresses in each subnet -> 2¹⁵ - 2 = 32768 - 2 = 32766
+                                                  first and last address in the first subnet :-
+                                                  First Valid Address : 16.0.0.1
+
+                                                  Last Valid Address : 16.0.127.254
+
+                                                  Subnet last subnet IP is 16.249.128.0 -> 16.249.128.17
+
+
+
 22. An organization is granted the block 130.56.0.0/16. The administrator wants to
 create 1024 subnets.
 a. Find the subnet mask.
 b. Find the number of addresses in each subnet.
 c. Find the first and last addresses in subnet 1.
 d. Find the first and last addresses in subnet 1024.
+
+
+
 23. An organization is granted the block 211.17.180.0/24. The administrator wants to
 create 32 subnets.
 a. Find the subnet mask.
 b. Find the number of addresses in each subnet.
 c. Find the first and last addresses in subnet 1.
 d. Find the first and last addresses in subnet 32.
+
+
+
 24. Write the following masks in slash notation (In).
-a. 255.255.255.0
-b. 255.0.0.0
-c. 255.255.224.0
-d. 255.255.240.0
+a. 255.255.255.0 : /24
+b. 255.0.0.0 : /8
+c. 255.255.224.0 : /19
+d. 255.255.240.0 : /20
+
+
 25. Find the range of addresses in the following blocks.
 a. 123.56.77.32/29
+add = 2^(32 - 29 ) : 3
+first add  = 123.56.77.32
+last add = 123.56.77.39
+
 b. 200.17.21.128/27
+add = 2^(32 - 27 ) : 5
+first add  = 200.17.21.128
+last add = 200.17.21.159
+
 c. 17.34.16.0/23
+add = 2^(32 - 23) : 9
+first add  = 17.34.16.0
+last add = 17.34.17.255
+
 d. 180.34.64.64/30
+add = 2^(32 - 30 ) : 2
+first add  = 180.34.64.64
+last add = 180.34.64.67
+
+
 26. An ISP is granted a block of addresses starting with 150.80.0.0/16. The ISP wants
 to distribute these blocks to 2600 customers as follows.
 a. The first group has 200 medium-size businesses; each needs 128 addresses.
@@ -260,11 +298,18 @@ b. The second group has 400 small businesses; each needs 16 addresses.
 c. The third group has 2000 households; each needs 4 addresses.
 Design the subblocks and give the slash notation for each subblock. Find out how
 many addresses are still available after these allocations.
+
+
+
+
 27. An ISP is granted a block of addresses starting with 120.60.4.0/22. The ISP
 wants to distribute these blocks to 100 organizations with each organization
 receiving just eight addresses. Design the subblocks and give the slash notation
 for each subblock. Find out how many addresses are still available after these
 allocations.
+
+
+
 28. An ISP has a block of 1024 addresses. It needs to divide the addresses among
 1024 customers. Does it need subnetting? Explain your answer.
 29. Show the shortest form of the following addresses.
@@ -272,36 +317,66 @@ a. 2340: lABC: 119A:AOOO:0000:0000:0000:0000
 b. OOOO:OOAA:OOOO:OOOO:OOOO:OOOO: 119A:A231
 c. 2340:0000:0000:0000:0000: 119A:AOO1:0000
 d. 0000:0000:0000:2340:0000:0000:0000:0000
-SECTION 19.6 PRACTICE SET 577
+
+
+
+
 30. Show the original (unabbreviated) form of the following addresses.
 a. 0::0
 b.O:AA::O
 c. 0: 1234::3
 d. 123::1:2
+
+
+
 31. What is the type of each of the following addresses?
 a. FE80::12
 b. FECO: :24A2
 c. FF02::0
 d. 0::01
+
+
+
 32. What is the type of each of the following addresses?
 a. 0::0
 b. 0: :FFFF:O:O
 c. 582F:1234::2222
 d. 4821::14:22
 e. 54EF::A234:2
+
+
+
 33. Show the provider prefix (in hexadecimal colon notation) of an address assigned
 to a subscriber if it is registered in the United States with ABC1 as the provider
 identification.
+
+
+
 34. Show in hexadecimal colon notation the IPv6 address
 a. Compatible to the IPv4 address 129.6.12.34
 b. Mapped to the IPv4 address 129.6.12.34
+
+
+
 35. Show in hexadecimal colon notation
 a. The link local address in which the node identifier is 0:: 123/48
 b. The site local address in which the node identifier is 0:: 123/48
+
+
+
 36. Show in hexadecimal colon notation the permanent multicast address used in a link
 local scope.
+
+
+
 37.• A host has the address 581E: 1456:2314:ABCD:: 1211. If the node identification is
 48 bits, find the address of the subnet to which the host is attached.
+
+
+
 38. A site with 200 subnets has the class B address of 132.45.0.0. The site recently
 migrated to IPv6 with the subscriber prefix 581E:1456:2314::ABCD/80. Design
 the subnets and define the subnet addresses, using a subnet identifier of 32 bits.
+
+
+
