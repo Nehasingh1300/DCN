@@ -377,7 +377,7 @@ local scope.
 
 
 
-37.• A host has the address 581E: 1456:2314:ABCD:: 1211. If the node identification is
+37.A host has the address 581E: 1456:2314:ABCD:: 1211. If the node identification is
 48 bits, find the address of the subnet to which the host is attached.
 
 
@@ -387,4 +387,4 @@ migrated to IPv6 with the subscriber prefix 581E:1456:2314::ABCD/80. Design
 the subnets and define the subnet addresses, using a subnet identifier of 32 bits.
 
 
-
+Problems 26,27,29,30,31,32 ->
