@@ -115,9 +115,51 @@ responding machine must be running a RARP server program.
  In addition, the RARP cannot handle subnetting because no subnet masks are sent. 
  If the network has been divided into multiple subnets, an RARP server must be available in each one.
  what is the use of subnet mask here?
- 
+
+
+BOOTP 
+how a client can send an IP datagram when it knows neither
+its own IP address (the source address) nor the server's IP address (the destination
+address). The client simply uses all as as the source address and allIs as the destination
+address.
+One of the advantages of BOOTP over RARP is that the client and server are
+application-layer processes. As in other application-layer processes, a client can be in
+one network and the server in another, separated by several other networks. However,
+there is one problem that must be solved. The BOOTP request is broadcast because the
+client does not know the IP address of the server. A broadcast IP datagram cannot pass
+through any router. To solve the problem, there is a need for an intermediary. One of the
+hosts (or a router that can be configured to operate at the application layer) can be used
+as a relay. The host in this case is called a relay agent. The relay agent knows the unicast
+address of a BOOTP server. When it receives this type of packet, it encapsulates the
+message in a unicast datagram and sends the request to the BOOTP server. The packet,
+620 CHAPTER 21 NETWORK LAYER: ADDRESS MAPPING, ERROR REPORTING, AND MULTICASTING
+carrying a unicast destination address, is routed by any router and reaches the BOOTP
+server. The BOOTP server knows the message comes from a relay agent because one of
+the fields in the request message defines the IP address of the relay agent. The relay
+agent, after receiving the reply, sends it to the BOOTP client.        
          
-         
-         
-         
-         
+DHCP
+Dynamic Host Configuration Protocol
+DHCP provides static and dynamic address allocation that can be manual or automatic.
+
+Static Address Allocation
+In this capacity DHCP acts as BOOTP does. It is backwardcompatible with BOOTP, which means a host running the BOOTP client can request a
+static address from a DHCP server. A DHCP server has a database that statically binds
+physical addresses to IP addresses.
+
+Dynamic Address Allocation 
+DHCP has a second database with a pool of available
+IP addresses. This second database makes DHCP dynamic. When a DHCP client requests
+a temporary IP address, the DHCP server goes to the pool of available (unused) IP
+addresses and assigns an IP address for a negotiable period of time.         
+
+
+
+The Internet Control Message Protocol (ICMP)
+The IP protocol also lacks a mechanism for host and management queries. A host
+sometimes needs to determine if a router or another host is alive. And sometimes a network administrator needs
+information from another host or router.
+The Internet Control Message Protocol (ICMP) has been designed to compensate
+for the above two deficiencies. It is a companion to the IP protoco1.
+
+
