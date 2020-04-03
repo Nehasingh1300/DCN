@@ -74,7 +74,7 @@ then formula for first add = add with replacing log(2^(32-28))=4 with 9;s from r
 So, first add / network add = 205.16.37.32
 
 
-8. Briefly define subnetting and supemetting. How do the subnet mask and supemet
+8. Briefly define subnetting and supemetting. How do the subnet mask and supemetn
 mask differ from a default mask in classful addressing?
 
 If an organization was
@@ -299,6 +299,8 @@ c. The third group has 2000 households; each needs 4 addresses.
 Design the subblocks and give the slash notation for each subblock. Find out how
 many addresses are still available after these allocations.
 
+                                                                                      how to give ip's to users
+  `                                                                                   subblocks
 
 
 
@@ -312,37 +314,43 @@ allocations.
 
 28. An ISP has a block of 1024 addresses. It needs to divide the addresses among
 1024 customers. Does it need subnetting? Explain your answer.
-29. Show the shortest form of the following addresses.
-a. 2340: lABC: 119A:AOOO:0000:0000:0000:0000
-b. OOOO:OOAA:OOOO:OOOO:OOOO:OOOO: 119A:A231
-c. 2340:0000:0000:0000:0000: 119A:AOO1:0000
-d. 0000:0000:0000:2340:0000:0000:0000:0000
 
+  Yes, it depends on the type of organisation is going to use those IPs if people 
+  are normal users then they can simply use without subnetting but if there is an
+  organisation which has subgroups and they also have subgroups then there is need 
+  of subnetting.
+
+
+29. Show the shortest form of the following addresses.
+a. 2340: lABC: 119A:AOOO:0000:0000:0000:0000 : 2340:1ABC:119A:AOOO::
+b. OOOO:OOAA:OOOO:OOOO:OOOO:OOOO: 119A:A231 : O:AA:OOOO:OOOO:OOOO:OOOO:119A:A231
+c. 2340:0000:0000:0000:0000: 119A:AOO1:0000 : 2340::119A:AOO1:OOOO
+d. 0000:0000:0000:2340:0000:0000:0000:0000 : 0000:0000:0000:2340::
 
 
 
 30. Show the original (unabbreviated) form of the following addresses.
-a. 0::0
-b.O:AA::O
-c. 0: 1234::3
-d. 123::1:2
+a. 0::0 : 0000:0000:0000:0000:0000:0000:0000:0000
+b.O:AA::O : OOOO:OOAA:0000:0000:0000:0000:0000:OOOO
+c. 0: 1234::3 : 0000:1234:0000:0000:0000:0000:0000:0003
+d. 123::1:2 : 0123:0000:0000:0000:0000:0000:0001:0002
 
 
 
 31. What is the type of each of the following addresses?
-a. FE80::12
-b. FECO: :24A2
-c. FF02::0
-d. 0::01
+a. FE80::12 :link local
+b. FECO: :24A2 : site
+c. FF02::0 : multicast
+d. 0::01 :loopback add
 
 
 
 32. What is the type of each of the following addresses?
-a. 0::0
-b. 0: :FFFF:O:O
-c. 582F:1234::2222
-d. 4821::14:22
-e. 54EF::A234:2
+a. 0::0 : specific add - not specified
+b. 0: :FFFF:O:O : add IPv4 mapped
+c. 582F:1234::2222 : global 
+d. 4821::14:22 : geographical 
+e. 54EF::A234:2 : unassigned
 
 
 
