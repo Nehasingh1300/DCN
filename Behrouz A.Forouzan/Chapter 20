@@ -65,10 +65,57 @@ source receive add and IP datagram which has add , send encapsulated frame with 
                                      
                                      
  Proxy ARP       
-                              
+ It is technique which create subnetting effect. Whenever a router running proxy ARP receives a ARP request for any host 
+ among a set of host inder it, It sends it own physical add and whe get the IP packet it sends the packet to target host.
+ 
+ Mapping Physical to Logical Address: RARP, BOOTP, and DHCP
+There are occasions in which a host knows its physical address, but needs to know its
+logical address. This may happen in two cases:
+1. A diskless station is just booted. The station can find its physical address by checking
+its interface, but it does not know its IP address.
+2. An organization does not have enough IP addresses to assign to each station; it needs
+to assign IP addresses on demand. The station can send its physical address and
+ask for a short time lease.
+
+Reverse Address Resolution Protocol (RARP) 
+
+Each host or router is assigned one or more logical
+(IP) addresses, which are unique and independent of the physical (hardware) address
+To create an IP datagram, a host or a router needs to know its own IP
+address or addresses. The IP address of a machine is usually read from its configuration
+file stored on a disk file.
+
+A RARP request is created and broadcast on the local network.
+Another machine on the local network that knows all the IP addresses will respond with
+a RARP reply. The requesting machine must be running a RARP client program; the
+responding machine must be running a RARP server program.
+
+
                                      
                                      
-                                     
+ 
+ 
+ issues 
+ RARP
+ subnet mask ??
+ It determines the  number of netid and hostid you have
+ 255.255.255.0
+ 11111111 11111111 11111111 00000000
+ netid--------------------- hostid--
+ 
+ does subnetting provides more IPs?
+ 
+ To be able to use the protocol successfully, the RARP server has to be located in the same physical network.
+ The computer sends the RARP request on the lowest layer of the network. As a result, it is not possible for a
+ router to forward the packet.
+ transport layer for server
+ network layer for ip
+ {are server and routers in diff layer?}
+ 
+ In addition, the RARP cannot handle subnetting because no subnet masks are sent. 
+ If the network has been divided into multiple subnets, an RARP server must be available in each one.
+ what is the use of subnet mask here?
+ 
          
          
          
