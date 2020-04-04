@@ -1,0 +1,448 @@
+ADDRESS MAPPING
+A physical address is a local address. Its jurisdiction is a local network. It must be
+unique locally, but is not necessarily unique universally.
+The physical address and the logical address are two different identifiers. We need
+both because a physical network such as Ethernet can have two different protocols at
+the network layer such as IP and IPX (Novell) at the same time
+
+Static mapping involves in the creation of a table that associates a logical address
+with a physical address. This table is stored in each machine on the network.
+
+This has some limitations because physical addresses may
+change in the following ways:
+1. A machine could change its NIC{network interface controller}, resulting in a new physical address.
+2. In some LANs, such as LocalTalk, the physical address changes every time the
+computer is turned on.
+3. A mobile computer can move from one physical network to another, resulting in a
+change in its physical address.
+
+In dynamic mapping each time a machine knows one of the two addresses (logical
+or physical), it can use a protocol to find the other one.
+
+ARP (address resolution protocol)
+Anytime a host or a router has an IP datagram to send to another host or router, it has the
+logical (IP) address of the receiver. The logical (IP) address is obtained from the DNS
+if the sender is the host or it is found in a routing table 
+if the sender is a router. But the IP datagram must be encapsulated in a frame to be able to
+pass through the physical network.The host or the router sends an ARP query packet. The packet includes
+the physical and IP addresses of the sender and the IP address of the receiver. Because
+the sender does not know the physical address of the receiver, the query is broadcast
+over the network .
+
+Cache Memory
+If system A has to send packets to system B and it sends ARP reqest everyitme rather it can broadcast
+files to network. So, it should rather save the address to its cache memory and hence from next time check
+it any mapping is there. 
+
+Operation                                                                                                           (why do we need physical add to pass packet)
+Sender know IP of target
+Sender send ARP request using  it, with sender IP, physical add and target IP but target physical add is 0
+Message is passed to data link layer where encapsulated with physical add within frame, physical braodcast add as destination add
+every host and router receive the arp req but only targeted has packet
+targeted reply with physical add as arp reply
+source receive add and IP datagram which has add , send encapsulated frame with destination add.
+
+
+                                  Sender                                                                          Receiver
+      
+         CASE 1                 host                            same network                                       host    
+                                ip map to mac is des add
+      
+      
+      
+         CASE 2                 host                             difff network                                      host 
+                         ip in routing table or default router is to be mapped
+       
+       
+       
+         CASE 3                 router                            diff network                                      host
+                                ip of next router is to be mapped
+        
+        
+        
+         CASE 4                 router                             same network                                    host
+                                     dest ip add of ip datagram become ip to be mapped to physical add
+                                     
+                                     
+ Proxy ARP       
+ It is technique which create subnetting effect. Whenever a router running proxy ARP receives a ARP request for any host 
+ among a set of host inder it, It sends it own physical add and whe get the IP packet it sends the packet to target host.
+ 
+ Mapping Physical to Logical Address: RARP, BOOTP, and DHCP
+There are occasions in which a host knows its physical address, but needs to know its
+logical address. This may happen in two cases:
+1. A diskless station is just booted. The station can find its physical address by checking
+its interface, but it does not know its IP address.
+2. An organization does not have enough IP addresses to assign to each station; it needs
+to assign IP addresses on demand. The station can send its physical address and
+ask for a short time lease.
+
+Reverse Address Resolution Protocol (RARP) 
+
+Each host or router is assigned one or more logical
+(IP) addresses, which are unique and independent of the physical (hardware) address
+To create an IP datagram, a host or a router needs to know its own IP
+address or addresses. The IP address of a machine is usually read from its configuration
+file stored on a disk file.
+
+A RARP request is created and broadcast on the local network.
+Another machine on the local network that knows all the IP addresses will respond with
+a RARP reply. The requesting machine must be running a RARP client program; the
+responding machine must be running a RARP server program.
+
+
+BOOTP 
+how a client can send an IP datagram when it knows neither
+its own IP address (the source address) nor the server's IP address (the destination
+address). The client simply uses all as as the source address and allIs as the destination
+address.
+One of the advantages of BOOTP over RARP is that the client and server are
+application-layer processes. As in other application-layer processes, a client can be in
+one network and the server in another, separated by several other networks. However,
+there is one problem that must be solved. The BOOTP request is broadcast because the
+client does not know the IP address of the server. A broadcast IP datagram cannot pass
+through any router. To solve the problem, there is a need for an intermediary. One of the
+hosts (or a router that can be configured to operate at the application layer) can be used
+as a relay. The host in this case is called a relay agent. The relay agent knows the unicast
+address of a BOOTP server. When it receives this type of packet, it encapsulates the
+message in a unicast datagram and sends the request to the BOOTP server. The packet,
+620 CHAPTER 21 NETWORK LAYER: ADDRESS MAPPING, ERROR REPORTING, AND MULTICASTING
+carrying a unicast destination address, is routed by any router and reaches the BOOTP
+server. The BOOTP server knows the message comes from a relay agent because one of
+the fields in the request message defines the IP address of the relay agent. The relay
+agent, after receiving the reply, sends it to the BOOTP client.        
+         
+DHCP
+Dynamic Host Configuration Protocol
+DHCP provides static and dynamic address allocation that can be manual or automatic.
+
+Static Address Allocation
+In this capacity DHCP acts as BOOTP does. It is backwardcompatible with BOOTP, which means a host running the BOOTP client can request a
+static address from a DHCP server. A DHCP server has a database that statically binds
+physical addresses to IP addresses.
+
+Dynamic Address Allocation 
+DHCP has a second database with a pool of available
+IP addresses. This second database makes DHCP dynamic. When a DHCP client requests
+a temporary IP address, the DHCP server goes to the pool of available (unused) IP
+addresses and assigns an IP address for a negotiable period of time.         
+
+
+
+The Internet Control Message Protocol (ICMP)
+The IP protocol also lacks a mechanism for host and management queries. A host
+sometimes needs to determine if a router or another host is alive. And sometimes a network administrator needs
+information from another host or router.
+The Internet Control Message Protocol (ICMP) has been designed to compensate
+for the above two deficiencies. It is a companion to the IP protoco1.
+
+Types of Messages
+The error-reporting messages 
+report problems that a router or a host (destination)
+may encounter when it processes an IP packet.
+
+The query messages,
+which occur in pairs, help a host or a network manager get
+specific information from a router or another host.
+
+
+ICMP always reports error messages to the original source.
+
+The following are important points about ICMP error messages:
+o No ICMP error message will be generated in response to a datagram carrying an
+ICMP error message.
+D No ICMP error message will be generated for a fragmented datagram that is not
+the first fragment.
+D No IeMP error message will be generated for a datagram having a multicast
+address.
+D No ICMP error message will be generated for a datagram having a special address
+such as 127.0.0.0 or 0.0.0.0.
+
+Note that all error messages contain a data section that includes the IP header of the
+original datagram plus the first 8 bytes of data in that datagram.
+
+Destination Unreachable
+When a router cannot route a datagram or a host cannot deliver a datagram, the datagram
+is discarded and the router or the host sends a destination-unreachable message back to
+the source host that initiated the datagram.
+
+There is no communication between the
+source host, which produces the datagram, the routers, which forward it, and the destination host, which processes it.
+
+One of the ramifications of this absence of communication
+is the lack offlow control.The source host never knows if it is producing datagrams
+faster than can be forwarded by routers or processed by the destination host.
+
+. The source-quench message in ICMP was designed to add a
+kind of flow control to the IP. When a router or host discards a datagram due to congestion, it sends a source-quench message
+to the sender of the datagram. This message
+has two purposes. First, it informs the source that the datagram has been discarded.
+Second, it warns the source that there is congestion somewhere in the path and that the
+source should slow down (quench) the sending process
+
+Time Exceeded
+each datagram contains a field called time to live that controls this situation.
+When a datagram visits a router, the value of this field is decremented by 1. When the
+time-to-live value reaches 0, after decrementing, the router discards the datagram. However, when the datagram is discarded,
+a time-exceeded message must be sent by the
+router to the original source. Second, a time-exceeded message is also generated when
+not all fragments that make up a message arrive at the destination host within a certain
+time limit.
+
+Parameter Problem
+If a router or the destination host discovers an ambiguous or missing value in any field of the datagram,
+it discards the datagram and sends a
+parameter-problem message back to the source.
+
+Redirection
+Router R2 is obviously the most efficient routing choice, but host A did not choose
+router R2. The datagram goes to R1 instead. Router R1, after consulting its table, finds
+that the packet should have gone to R2. It sends the packet to R2 and, at the same time,
+sends a redirection message to host A. Host A's routing table can now be updated.
+
+ Query
+a node sends a message that
+is answered in a specific format by the destination node. A query message is encapsulated in an IP packet, 
+which in tum is encapsulated in a data link layer frame.
+
+Echo Request and Reply
+. The combination of echo-request and echo-reply messages detennines whether two systems
+(hosts or routers) can communicate with each other. The echo-request and echo-reply
+messages can be used to determine if there is communication at the IP level. Because
+ICMP messages are encapsulated in IP datagrams, the receipt of an echo-reply message
+by the machine that sent the echo request is proofthat the IP protocols in the sender and
+receiver are communicating with each other using the IP datagram. Also, it is proof that
+the intermediate routers are receiving, processing, and forwarding IP datagrams.
+
+Timestamp Request and Reply
+Two machines (hosts or routers) can use the timestamp request and timestamp reply
+messages to determine the round-trip time needed for an IP datagram to travel between
+them.
+
+Address-Mask Request and Reply
+A host may know its IP address, but it may not know the corresponding mask. For
+example, a host may know its IP address as 159.31.17.24, but it may not know that the
+corresponding mask is /24. To obtain its mask, a host sends an address-mask-request
+message to a router on the LAN. Ifthe host knows the address of the router, it sends the
+request directly to the router. If it does not know, it broadcasts the message. The router
+receiving the address-mask-request message responds with an address-mask-reply
+message, providing the necessary mask for the host. 
+
+Router Solicitation and Advertisement
+As we discussed in the redirection message section, a host that wants to send data to a host
+on another network needs to know the address of routers connected to its own network.
+Also, the host must know if the routers are alive and functioning. The router-solicitation
+and router-advertisement messages can help in this situation. A host can broadcast (or
+multicast) a router-solicitation message. The router or routers that receive the solicitation
+message broadcast their routing information using the router-advertisement message. A
+router can also periodically send router-advertisement messages even if no host has solicited. 
+Note that when a router sends out an advertisement, it announces not only its own
+presence but also the presence of all routers on the network of which it is aware.
+
+Checksum
+we learned the concept and idea of the checksum. In ICMP the checksum
+is calculated over the entire message (header and data).
+
+Ping
+We can use the ping program to find if a host is alive and responding. We use ping here
+to see how it uses ICMP packets.
+
+The ping program sends messages with sequence numbers starting from O. For each probe it
+gives us the RTT time. The TTL (time to live) field in the IP datagram that encapsulates an ICMP
+message has been set to 62, which means the packet cannot travel mare than 62 hops. At the beginning, ping defines the number of data bytes as 56 and the total number of bytes as 84. It is obvious
+that if we add 8 bytes of ICMP header and 20 bytes of IP header to 56, the result is 84
+
+Tracerollte
+The traceroute program in UNIX or tracert in Windows can be used to trace the route
+of a packet from the source to the destination. W
+
+Given the topology, we know that a packet from host A to host B travels through
+routers Rl and R2. However, most of the time, we are not aware of this topology. There
+could be several routes from A to B. The traceroute program uses the ICMP messages
+and the TTL (time to live) field in the IP packet to find the route.
+
+1. The traceroute program uses the following steps to find the address of the router Rl
+and the round-trip time between host A and router Rl.
+a. The traceroute application at host A sends a packet to destination Busing UDP;
+the message is encapsulated in an IP packet with a TTL value of 1. The program
+notes the time the packet is sent.
+b. Router Rl receives the packet and decrements the value of TTL to O. It then discards the packet (because TTL is 0).
+The router, however, sends a time-exceeded
+ICMP message (type: 11, code: 0) to show that the TTL value is 0 and the packet
+was discarded.
+c. The traceroute program receives the ICMP messages and uses the destination
+address of the IP packet encapsulating ICMP to find the IP address of router Rl.
+The program also makes note of the time the packet has arrived. The difference
+between this time and the time at step a is the round-trip time.
+
+The traceroute program repeats steps a to c three times to get a better average
+round-trip time. The first trip time may be much longer than the second or third
+because it takes time for the ARP program to find the physical address of router
+RI. For the second and third trips, ARP has the address in its cache.
+
+2. The traceroute program repeats the previous steps to find the address of router R2
+and the round-trip time between host A and router R2. However, in this step, the
+value of TTL is set to 2. So router RI forwards the message, while router R2 discards it
+and sends a time-exceeded ICMP message.
+
+3. The traceroute program repeats step 2 to find the address of host B and the round-trip
+time between host A and host B. When host B receives the packet, it decrements the
+value of TIL, but it does not discard the message since it has reached its final destination.
+How can an ICMP message be sent back to host A? The traceroute program
+uses a different strategy here. The destination port of the UDP packet is set to one
+that is not supported by the UDP protocol. When host B receives the packet, it cannot
+find an application program to accept the delivery. It discards the packet and sends an
+ICMP destination-unreachable message (type: 3, code: 3) to host A. Note that this
+situation does not happen at router RI or R2 because a router does not check the
+UDP header. The traceroute program records the destination address of the arrived
+IP datagram and makes note of the round-trip time. Receiving the destinationunreachable message
+with a code value 3 is an indication that the whole route has
+been found and there is no need to send more packets.
+
+
+IGMP
+The IP protocol can be involved in two types of communication: unicasting and multicasting. Unicasting is the communication between one sender and one receiver. It is a
+one-to-one communication. However, some processes sometimes need to send the same
+message to a large number of receivers simultaneously. This is called multicasting,
+which is a one-to-many communication. 
+
+IGMP is a group management protocol. It helps a multicast router create
+and update a list ofloyal members related to each router interface.
+
+IGMP Messages
+IOMP has gone through two versions. We discuss IOMPv2, the current version. IOMPv2
+has three types of messages: the query, the membership report, and the leave report.
+There are two types of query messages: general and special
+
+Joining a Group
+A host or a router can join a group. A host maintains a list of processes that have membership in a group.
+When a process wants to join a new group, it sends its request to the host.
+The host adds the name of the process and the name of the requested group to its list. If
+this is the first entry for this particular group, the host sends a membership report message.
+Ifthis is not the first entry, there is no need to send the membership report since the
+host is already a member ofthe group; it already receives multicast packets for this group.
+
+
+In IGMP, a membership report is sent twice, one after the other.
+
+
+Leaving a Group
+When a host sees that no process is interested in a specific group, it sends a leave report.
+Similarly, when a router sees that none of the networks connected to its interfaces is
+interested in a specific group, it sends a leave report about that group.
+
+
+Monitoring Membership
+The multicast router is responsible
+for monitoring all the hosts or routers in a LAN to see if they want to continue their
+membership in a group.
+
+The general query message does not define a particular group.
+
+When a host or router receives the
+general query message, it responds with a membership report if it is interested in a
+group. However, if there is a common interest (two hosts, for example, are interested in
+the same group), only one response is sent for that group to prevent unnecessary traffic.
+This is called a delayed response. Note that the query message must be sent by only one
+router (normally called the query router), also to prevent unnecessary traffic.
+
+Delayed Response
+To prevent unnecessary traffic, IGMP uses a delayed response strategy. When a host or
+router receives a query message, it does not respond immediately; it delays the response.
+Each host or router uses a random number to create a timer, which expires between I and
+lOs. The expiration time can be in steps of I s or less. A timer is set for each group in the
+list. For example, the timer for the first group may expire in 2 s, but the timer for the third
+group may expire in 5 s.
+
+
+Query Router
+Query messages may create a lot of responses. To prevent unnecessary traffic, IGMP
+designates one router as the query router for each network. Only this designated router
+sends the query message, and the other routers are passive (they receive responses and
+update their lists).
+
+
+Encapsulation
+The IGMP message is encapsulated in an IP datagram, which is itself encapsulated in a
+frame.
+
+The IP packet that carries an IGMP packet has a value of 1 in its TTL field
+
+Netstat Utility
+The netstat utility can be used to find the multicast addresses supported by an interface.
+
+
+ICMPv6
+
+Error Reporting
+Destination Unreachable
+The concept of the destination-unreachable message is exactly the same as described
+for ICMP version 4.
+Packet Too Big
+This is a new type of message added to version 6. If a router receives a datagram that is
+larger than the maximum transmission unit (MTU) size of the network through which
+the datagram should pass, two things happen. First, the router discards the datagram
+and then an ICMP error packet-a packet-too-big message-is sent to the source.
+Time Exceeded
+This message is similar to the one in version 4.
+Parameter Problem
+This message is similar to its version 4 counterpart.
+Redirection
+The purpose of the redirection message is the same as described for version 4.
+Query
+In addition to error reporting, ICMP can diagnose some network problems. This is
+accomplished through the query messages. Four different groups of messages have been
+defined: echo request and reply, router solicitation and advertisement, neighbor solicitation and advertisement, and group membership.
+Echo Request and Reply
+The idea and format of the echo request and reply messages are the same as those in
+version 4.
+Router Solicitation and Advertisement
+The idea behind the router-solicitation and -advertisement messages is the same as in
+version 4.
+Neighbor Solicitation and Advertisement
+As previously mentioned, the network layer in version 4 contains an independent protocol
+called Address Resolution Protocol (ARP). In version 6, this protocol is eliminated, and
+its duties are included in ICMPv6.
+Group Membership
+As previously mentioned, the network layer in version 4 contains an independent protocol
+called IGMP. In version 6, this protocol is eliminated, and its duties are included in
+ICMPv6. The purpose is exactly the same.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ issues 
+ RARP
+ subnet mask ??
+ It determines the  number of netid and hostid you have
+ 255.255.255.0
+ 11111111 11111111 11111111 00000000
+ netid--------------------- hostid--
+ 
+ does subnetting provides more IPs?
+ 
+ To be able to use the protocol successfully, the RARP server has to be located in the same physical network.
+ The computer sends the RARP request on the lowest layer of the network. As a result, it is not possible for a
+ router to forward the packet.
+ transport layer for server
+ network layer for ip
+ {are server and routers in diff layer?}
+ 
+ In addition, the RARP cannot handle subnetting because no subnet masks are sent. 
+ If the network has been divided into multiple subnets, an RARP server must be available in each one.
+ what is the use of subnet mask here?
