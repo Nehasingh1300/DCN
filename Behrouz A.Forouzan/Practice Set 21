@@ -1,0 +1,165 @@
+1. Is the size of the ARP packet fixed? Explain.
+no, it changes with Sender hardware address, Sender protocol address,Target hardware address,
+Target protocol address
+
+
+2. What is the size of an ARP packet when the protocol is IPv4 and the hardware is
+Ethernet?
+16+16+8+8+16+6+4+6+4 = 20 + 48 + 16  = 84 bytes
+
+
+3. What is the size of an Ethernet frame carrying an ARP packet in Question 2?
+64 + sender hardware add+ sender protocol add
+
+
+4. What is the broadcast address for Ethernet?
+
+With limited broadcast, an IP address is given as a destination. This IP address is always 255.255.255.255.
+Technically, this broadcast should be sent to all the IP addresses that exist.
+However, it actually serves as an address for the broadcast within the network.
+This destination is always in its own network and can therefore be implemented in an Ethernet broadcast.
+A router does not forward such a packet.
+
+
+5. Why is there a restriction on the generation of an ICMPv4 message in response to
+a failed ICMPv4 error message?
+
+The Internet Control Message Protocol (ICMP) is one of the core protocols of the Internet Protocol Suite. 
+It is chiefly used by the operating systems of networked computers to send error messages indicating, 
+for example, that a requested service is not available or that a host or router could not be reached. 
+ICMP can also be used to relay query messages.
+
+
+6. What is the purpose of including the IPv4 header and the first 8 bytes of datagram
+data in the error-reporting ICMPv4 messages?
+
+The original datagram header is added to give the original source, which receives the error message;
+its type what has to done next and where to forward this msg further,
+information about the datagram itself.
+
+
+
+7. Give an example of a situation in which a host would never receive a redirection
+message.
+
+when msg is send with ttl value 0 and the when it move from host to router then its
+ttl is decreased to 0 and so router discard that msg and no redirection msg is send
+
+
+8. What is the minimum size of an ICMPv4 packet? What is the maximum size of an
+ICMPv4 packet?
+Minimum : 64 bytes
+maximum : 1518 bytes
+
+
+9. What is the minimum size of an IPv4 packet that carries an ICMPv4 packet? What
+is the maximum size?
+
+ This 16-bit field defines the entire packet size in bytes, including header and data.
+ The minimum size is 20 bytes (header without data) and the maximum is 65,535 bytes.
+
+
+10. How can we determine if an IPv4 packet is carrying an ICMPv4 packet?
+Just need to check if the 10th byte of the packet (Protocol field) matches ICMP’s protocol 
+number (= 1, from /etc/protocols).
+
+11. What is the minimum size of an Ethernet frame that carries an IPv4 packet which
+in turn carries an ICMPv4 packet? What is the maximum size?
+
+"The minimum size would be 64 bytes if we do not consider the preamble and SFD fields,
+which are added at the physical layer. The maximum size would be 1518 bytes,
+again not considering the preamble and SFD fields. Although the maximum size of an ICMP
+packet can be much more than 1500 bytes (for a router advertisement packet),
+Ethernet can carry only 1500 bytes of it."
+
+
+12. Why is there no need for the ICMPv4 message to travel outside its own network?
+Broadcast address is the address on which all devices connected to the network can receive the datagram or packet.
+Unlike IP address which is addressed to a specific device, the datagram sent on a broadcast address is
+received by all devices in the network. There is no need for the ICMP message to travel outside its own network because,
+its purpose is to inform the next router in its spanning tree or the host/device (if on the same network) about the issue.
+
+
+Exercises
+13. A router with IPv4 address 125.45.23.12 and Ethernet physical address
+23:45:AB:4F:67:CD has received a packet for a host destination with IP address
+125.11.78.10. Show the entries in theARP request packet sent by the router. Assume
+no subnetting.
+
+
+14. Show the entries in the ARP packet sent in response to Exercise 13.
+
+
+15. Encapsulate the result of Exercise 13 in a data link frame. Fill in all the fields.
+
+
+16. Encapsulate the result of Exercise 14 in a data link frame. Fill in all the fields
+
+
+17. Host A sends a datagram to host B. Host B never receives the datagram, and host A
+never receives notification of failure. Give two different explanations of what might
+have happened.
+
+
+18. Calculate the checksum for the following ICMP packet:
+Type: Echo Request Identifier: 123 Sequence number: 25 Message: Hello
+
+
+19. A router receives an IPv4 packet with source IP address 130.45.3.3 and destination
+IP address 201.23.4.6. The router cannot find the destination IP address in its routing
+table. Which ICMPv4 message should be sent?
+
+
+20. TCP receives a segment with destination port address 234. TCP checks and cannot
+find an open port for this destination. Which ICMPv4 message should be sent?
+
+
+21. A multicast address for a group is 231.24.60.9. What is its 48-bit Ethernet address
+for a LAN using TCPIIP?
+
+
+22. If a router has 20 entries in its group table, should it send 20 different queries periodically orjust one? Explain your answer.
+
+
+23. If a host wants to continue membership in five groups, should it send five different
+membership report messages or just one?
+
+
+24. A router on an Ethernet network has received a multicast IP packet with groupid
+226.17.18.4. When the host checks its multicast group table, it finds this address.
+Show how the router sends this packet to the recipients by encapsulating the IP
+packet in an Ethernet frame. Show all the entries of the Ethernet frame. The outgoing
+IP address of the router is 185.23.5.6, and its outgoing physical address is
+4A224512E1E2. Does the router need the services of ARP?
+
+
+25. A host with IPv4 address 114.45.7.9 receives an IGMP query. When it checks its
+group table, it finds no entries. What action should the host take? Should it send
+any messages?
+
+
+26. A host with IPv4 address 222.5.7.19 receives an IGMP query. When it checks its
+routing table, it finds two entries in its table: 227.4.3.7 and 229.45.6.23. What
+action should the host take? Should it send any messages? If so, what type and how
+many?
+
+
+27. How many multicast addresses can be supported for the IPv4 protocol in Ethernet?
+How many multicast addresses can be supported by the IPv4 protocol? What is the
+size of address space lost when we transform a multicast IPv4 address to an Ethernet
+multicast address?
+
+
+28. Change the following IPv4 multicast addresses to Ethernet multicast addresses.
+How many of them specify the same Ethernet address?
+a. 224.18.72.8
+b. 235.18.72.8
+c. 237.18.6.88
+d. 224.88.12.8
+
+
+
+issue 
+
+ What is the size of an Ethernet frame carrying an ARP packet
+ 
