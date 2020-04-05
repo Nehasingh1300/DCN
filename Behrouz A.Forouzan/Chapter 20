@@ -1,0 +1,120 @@
+# Chapter 20
+
+Need for Network Layer
+To solve the problem of delivery through several links, the network layer (or the internetwork layer,
+as it is sometimes called) was designed. The network layer is responsible
+for host-to-host delivery and for routing the packets through the routers or switches
+
+Internet as a Datagram Network
+It uses the universal addresses defined in the network layer to route packets from the
+source to the destination.
+Switching at the network layerin the Internet uses the datagram approach to packetswitching
+
+Internet as a Connectionless Network
+
+In a connection-oriented service, the source first
+makes a connection with the destination before sending a packet. When the connection
+is established, a sequence of packets from the same source to the same destination can
+be sent one after another. In this case, there is a relationship between packets. They are
+sent on the same path in sequential order. A packet is logically connected to the packet
+traveling before it and to the packet traveling after it. When all packets of a message
+have been delivered, the connection is terminated.
+In a connection-oriented protocol, the decision about the route of a sequence of
+packets with the same source and destination addresses can be made only once, when
+the connection is established. Switches do not recalculate the route for each individual
+packet. This type of service is used in a virtual-circuit approacH. to packet switching
+such as in Frame Relay and ATM.
+
+
+In conneetionless service, the network layer protocol treats each packet independently, with each packet having no relationship to any other packet. The packets in a
+message mayor may not travel the same path to their destination. This type of service
+is used in the datagram approach to packet switching. The Internet has chosen this type
+of service at the network layer.
+The reason for this decision is that the Internet is made of so many heterogeneous
+networks that it is almost impossible to create a connection from the source to the
+destination without knowing the nature of the networks in advance.
+
+Communication at the network layer in the Internet is connectionless.
+
+TCP/IPv4
+IPv4 is an unreliable and connectionless datagram protocol-a best-effort delivery
+service. The term best-effort means that IPv4 provides no error control or flow control
+(except for error detection on the header). IPv4 assumes the unreliability of the underlying layers and does its best to get a transmission through to its destination, but with
+no guarantees.
+If reliability is important, IPv4 must be paired with a reliable protocol such as TCP.
+
+IPv4 is also a connectionless protocol for a packet-switching network that uses the
+datagram approach. This means that each datagram is handled independently, and each datagram can follow a different route to the destination. This implies that datagrams sent by the same source to the same destination could arrive out of
+order. Also, some could be lost or corrupted during transmission. Again, IPv4 relies on
+a higher-level protocol to take care of all these problems.
+
+
+Datagram
+Packets in the IPv4 layer are called datagrams. 
+A datagram is a variable-length packet consisting of two parts: header and data.
+The header is 20 to 60 bytes in length and contains information essential to routing and
+delivery. It is customary in TCP/IP to show the header in 4-byte sections. A brief
+description of each field is in order.
+
+Version (VER). 4-bit 
+o Header length (HLEN). 4-bit 
+o Services.  8-bit field
+
+
+Fragmentation
+A datagram can travel through different networks. Each router decapsulates the IPv4
+datagram from the frame it receives, processes it, and then encapsulates it in another
+frame. The format and size of the received frame depend on the protocol used by the
+physical network through which the frame has just traveled
+
+
+Maximum Transfer Unit (MTU)
+To make the IPv4 protocol independent of the physical network, the designers
+decided to make the maximum length of the IPv4 datagram equal to 65,535 bytes
+
+In IPv4, a datagram can be fragmented by the source host or any router in the path
+although there is a tendency to limit fragmentation only at the source. The reassembly of
+the datagram, however, is done only by the destination host because each fragment
+becomes an independent datagram. Whereas the fragmented datagram can travel through
+different routes, and we can never control or guarantee which route a fragmented datagram may take,
+all the fragments belonging to the same datagram should finally arrive at
+the destination host. So it is logical to do the reassembly at the final destination. An even
+stronger objection to reassembling packets during the transmission is the loss of efficiency it incurs.
+
+
+Checksum
+We discussed the general idea behind the checksum and how it is calculated in Chapter 10.
+The implementation of the checksum in the IPv4 packet follows the same principles. First,
+the value of the checksum field is set to O. Then the entire header is divided into 16-bit
+sections and added together. The result (sum) is complemented and inserted into the
+checksum field.
+The checksum in the IPv4 packet covers only the header, not the data. There are two
+good reasons for this. First, all higher-level protocols that encapsulate data in the IPv4
+datagram have a checksum field that covers the whole packet. Therefore, the checksum
+for the IPv4 datagram does not have to check the encapsulated data. Second, the header
+of the IPv4 packet changes with each visited router, but the data do not. So the checksum
+includes only the part that has changed. If the data were included, each router must recalculate the checksum for the whole packet, which means an increase in processing time.
+
+
+Options
+The header of the IPv4 datagram is made of two parts: a fixed palt and a variable part.
+The fixed part is 20 bytes long and was discussed in the previous section. The variable
+part comprises the options that can be a maximum of 40 bytes.
+Options, as the name implies, are not required for a datagram. They can be used for
+network testing and debugging. Although options are not a required part of the IPv4
+header, option processing is required of the IPv4 software. This means that all implementations must be able to handle options if they are present in the header.
+The detailed discussion of each option is beyond the scope of this book. We give
+the taxonomy of options in Figure 20.14 and briefly explain the purpose of each.
+No Operation
+A no-operation option is a I-byte option used as a filler between options.
+
+
+
+
+
+
+
+
+issue
+does size of header+ data change when it in layers of sender or when it in layers of receiver(for eg; in data link layer)?
+what is the size of header and data ?
