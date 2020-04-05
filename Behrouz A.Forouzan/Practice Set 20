@@ -1,0 +1,88 @@
+Review Questions
+1. What is the difference between the delivery of a frame in the data link layer and the
+delivery of a packet in the network layer?
+
+The data link layer groups the physical bits from the Physical layer into Frames/Packets. 
+The Data link layer provides device-to-device delivery of packets while Network layer provides
+network to network delivery of packets.
+
+
+2. What is the difference between connectionless and connection-oriented services?
+Which type of service is provided by IPv4? Which type of service is provided by IPv6?
+
+                  connectionless                                    connection-oriented services
+
+Network layer protocol treats each packet independently              connection is made before sending packets
+ and each packet sent separatly  
+
+no relationship among packets                                        relatioship among packets
+
+Packets in msg may or may not travel through same path in            packet sent through  same path in sequential order
+to their destination
+
+two consecutive packets may travel through same packet               two consecutive packets are connected/related
+
+
+IPv4 - conectionless
+IPv6 - conectionless
+
+
+3. Define fragmentation and explain why the IPv4 and IPv6 protocols need to fragment
+some packets. Is there any difference between the two protocols in this matter?
+
+
+4. Explain the procedure for checksum calculation and verification in the IPv4 protocol.
+What part of an IPv4 packet is covered in the checksum calculation? Why? Are
+options, if present, included in the calculation?
+5. Explain the need for options in IPv4 and list the options mentioned in this chapter
+with a brief description of each.
+6. Compare and contrast the fields in the main headers of IPv4 and IPv6. Make a table
+that shows the presence or absence of each field.
+7. Both IPv4 and IPv6 assume that packets may have different priorities or precedences.
+Explain how each protocol handles this issue.
+8. Compare and contrast the options in IPv4 and the extension headers in IPv6. Make
+a table that shows the presence or absence of each.
+9. Explain the reason for the elimination of the checksum in the IPv6 header.
+10. List three transition strategies to move from IPv4 to IPv6. Explain the difference
+between tunneling and dual stack strategies during the transition period. When is
+each strategy used?
+Exercises
+11. Which fields of the IPv4 header change from router to router?
+12. Calculate the HLEN (in IPv4) value if the total length is 1200 bytes, 1176 of which
+is data from the upper layer.
+13. Table 20.5 lists the MTUs for many different protocols. The MTUs range from 296
+to 65,535. What would be the advantages of having a large MTU? What would be
+the advantages of having a small MTU?
+14. Given a fragmented datagram (in IPv4) with an offset of 120, how can you determine
+the first and last byte numbers?
+15. Can the value of the header length in an IPv4 packet be less than 5? When is it
+exactly 5?
+16. The value ofHLEN in an IPv4 datagram is 7. How many option bytes are present?
+17. The size of the option field of an IPv4 datagram is 20 bytes. What is the value of
+HLEN? What is the value in binary?
+18. The value of the total length field in an IPv4 datagram is 36, and the value of the
+header length field is 5. How many bytes of data is the packet carrying?
+19. An IPv4 datagram is carrying 1024 bytes of data. Ifthere is no option information,
+what is the value of the header length field? What is the value of the total length
+field?
+20. A host is sending 100 datagrams to another host. Ifthe identification number of the
+first datagram is 1024, what is the identification number of the last (in IPv4)?
+21. An IPv4 datagram arrives with fragmentation offset of 0 and an M bit (more fragment
+bit) of O. Is this a first fragment, middle fragment, or last fragment?
+22. An IPv4 fragment has arrived with an offset value of 100. How many bytes of data
+were originally sent by the source before the data in this fragment?
+SECTION 20.8 PRACTICE SET 609
+23. An IPv4 datagram has arrived with the following information in the header (in
+hexadecimal):
+Ox45 00 00 54 00 03 58 50 20 06 00 00 7C 4E 03 02 B4 OE OF 02
+a. Is the packet corrupted?
+b. Are there any options?
+c. Is the packet fragmented?
+d. What is the size of the data?
+e. How many more routers can the packet travel to?
+f. What is the identification number of the packet?
+g. What is the type of service?
+24. In an IPv4 datagram, the M bit is 0, the value of HLEN is 5, the value of total
+length is 200, and the offset value is 200. What is the number of the first byte and
+number of the last byte in this datagram? Is this the last fragment, the first fragment,
+or a middle fragment?
