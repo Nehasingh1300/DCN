@@ -16,3 +16,17 @@ Casting : sending packet from one host to another host
 Unicast : one host to another
 Braodcast : one host send packet to every host in other network
 multicast : one host in network to all host in another network
+
+Mask 20.255.255.255 = 2^24 -2 host IP
+
+We have one IP and with that we have connected a subnet mask which has many hosts ? Does this mean we are providing many hosts a single Ip with use of a subnet mask?For eg; 192.168.0.1/24 then inside this IP we have 2^8 -2 hosts, so inside this Ip we have these many hosts!
+ Are mask and subnetting connected?  
+ 
+ mask : network -> mask -> host
+ subnetting : network -> group -> mask -> host
+ 
+For subnetting ; as I think it is just for classification purposes and subnetting is not increasing any host number.
+One more question: how do we provide IP to many hosts?191.168.0.0/16 191.168.0.1191.168.0.255
+191.168.1.0191.168.255.255    
+
+Is this how we divide for class B?
