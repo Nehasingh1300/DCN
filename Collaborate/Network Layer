@@ -1,0 +1,18 @@
+# Network Layer
+Logical address is assigned.
+IPv4 add are 32 bit add, no two device have same IP add
+add space = 2^32
+
+
+## netid hostid
+the use of hostid and netid is to tell the number of network and corresponding hosts we have
+
+## mask  : help in finding netid and hostid
+
+A8 B16 C24
+when we get netid as 1 then only we can go to host and put host as 1
+
+Casting : sending packet from one host to another host
+Unicast : one host to another
+Braodcast : one host send packet to every host in other network
+multicast : one host in network to all host in another network
