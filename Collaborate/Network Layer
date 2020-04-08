@@ -30,3 +30,21 @@ One more question: how do we provide IP to many hosts?191.168.0.0/16 191.168.0.
 191.168.1.0191.168.255.255    
 
 Is this how we divide for class B?
+
+
+
+
+
+subnetting is done by user
+
+It divide IP using many server to many hosts
+
+first ip for network and last for broadcast
+
+
+network id is for network UPES
+subnet id is for particular block block 10 of UPES
+
+
+AND operation of netid with default subnet mak for getting IP
+ 
